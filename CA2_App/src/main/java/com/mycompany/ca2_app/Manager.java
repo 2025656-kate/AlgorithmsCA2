@@ -20,5 +20,27 @@ public class Manager {
         this.type = type;
         this.department = department;
     }
+        
+        //getters methods
+    public String getName(){ return name; }
+    public ManagerType getType() { return type; }
+    public DepartmentName getDepartment() {return department; }
+    
+    //Setters methods
+    public void setName(String name) {this.name = name; }
+    public void setType(ManagerType type) {this.type = type; }
+    public void setDepartment(DepartmentName department){
+    this.department = department;
+    }
+    
+    //Overridinh a methog from the superclass
+    @Override
+    public String toString(){
+        return name + " (" + type + " of " + department + ")";
+        }
+    
+}
+
+    
     
     
