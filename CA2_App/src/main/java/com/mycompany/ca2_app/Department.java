@@ -23,5 +23,32 @@ public class Department {
         this.head = head;
         this.employees = new ArrayList<>();
     }
+     //get for the name, head manager and employee
+    public DepartmentName getName(){ return name;}
+    public Manager getHead() { return head;}
+    public List<Employee> getEmployees() {return employees;}
     
+    //setters to define name and head 
+    public void setName(DepartmentName name) {this.name = name;}
+    public void setHead(Manager head) { this.head = head;}
+    
+    //helpers for utilities in this case count and add the employee 
+    
+    public void addEmployee(Employee employee){
+        employees.add(employee);
+    }
+    
+    public int getEmployeeCount(){
+        return employees.size();
+    }
+    
+    //display
+    @Override
+    public String toString(){
+        return name + " department (head: " + head 
+                + ", " + employees.size() + " employees)";
+    }
+    
+}
+
    
