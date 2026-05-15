@@ -11,7 +11,8 @@ package com.mycompany.ca2_app.enums;
 public enum ManagerType {
     PRINCIPAL ("Principal"),
     VICE_PRINCIPAL ("Vice-Principal"),
-    HEAD_OF_DEPARTMENT ("Head of Department");
+    HEAD_OF_DEPARTMENT ("Head of Department"),
+    LECTURER ("Lecturer");
     
     private final String displayName;
     
