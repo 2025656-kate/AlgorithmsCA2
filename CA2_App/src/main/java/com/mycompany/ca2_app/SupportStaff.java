@@ -21,11 +21,12 @@ public class SupportStaff extends Employee {
         this.shift = shift;
     }
     
+    //what will display 
     public String getShift(){ return shift;}
     
     @Override
     public String toString(){
-        return super.toString() + "| Support Staff (" + shift + " shift}";
+        return super.toString() + "| Support Staff (" + shift + " shift)";
 
     }
 }
