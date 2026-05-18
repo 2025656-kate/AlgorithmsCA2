@@ -20,11 +20,12 @@ public class AdminStaff extends Employee {
         this.officeNumber = officeNumber;
     }
     
+    //what will display 
     public String getOfficeNumber(){ return officeNumber;}
     
     @Override
     public String toString(){
-        return super.toString() + "| Admin Staff (Office " + officeNumber + "}";
+        return super.toString() + " | Admin Staff (Office " + officeNumber + ")";
 
     }
 }
