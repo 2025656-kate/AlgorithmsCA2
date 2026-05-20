@@ -93,7 +93,116 @@ public class CA2_App {
             } catch (FileNotFoundException e){
                 System.out.println("File not found. Please try again");
             }
+            
+            private static void runMenuLoop(){
+        
+        while (true){
+            displayMenu();
+            int choice = readUserChoice();
+            MenuOption option = MenuOption.fromCode(choice);
+            
+            if (option == null){
+                System.out.println("Invalid option. Please, choose a valid number ");
+                continue;
+            }
+            
+            switch(option){
+                case SORT -> sortApplicantsList();
+                case SEARCH -> searchEmployeeByName();
+                case ADD_RECORDS -> addNewEmployee();
+                case CREATE_TREE -> buildBinaryTree();
+                case EXIT -> {
+                    return;
+                }
+            }
+        }
+    }
+            //LOOP MENU DISPLAY
+    // Prints the menu options to the console interacting with the enum values 
+    private static void displayMenu(){
+        System.out.println("Please choose an option:");
+        for (MenuOption option : MenuOption.values()) {
+            System.out.println(" " + option.getCode() + " " + option.getDescription() );
+        }
+        System.out.println("Your choice:  ");
+    }
     
+    //Reads a number from the input. It will return -1 if the input is not valid, using the try/catch to avoid crash the program
+    
+    private static int readUserChoice(){
+        String input = scanner.nextLine().trim();
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e){
+            return -1;
+        }
+    }
+     //MENU ACTIONS //
+    
+    //////SORT LIST///////
+    //Sort the applicants list using merge sort
+    private static void sortApplicantsList(){
+        
+        //Check if the form is empty
+        if (employees.isEmpty()){
+            System.out.println("Sorry, the document you provided is empty. Please load the file first.");
+            return;
+        }
+        
+        //Call the sorter method class
+        
+        employees = Sorter.mergeSort(employees);
+        isSorted = true;
+        
+        //Display the first 20 names
+        System.out.println("\nSorted list (first 20 names): ");
+        int limit = Math.min(20, employees.size());
+        for (int i = 0; i < limit; i++){
+            System.out.println(" " + (i + 1) + ". " + employees.get(i).getFullName());
+        }
+    }        
+    
+    //Search employee by name using binary search and will display the manager type and department of the serached employee
+       
+    private static void searchEmployeeByName(){
+            
+            //Binary search asks for sorted list 
+            if (!isSorted){
+                System.out.println("To search for an Employee, the list must be sorted."
+                + "Please, RUN SORT first. ");
+                return;
+            }
+            //Check if is empty
+            if (employees.isEmpty()) {
+                System.out.println("No data found. Please load the file first.");
+                return;
+            }
+            
+            //ask the user to input the name to search
+            System.out.println("Please enter the employee full name to search for:  ");
+            String targetName = scanner.nextLine().trim();
+            
+            //check if the input is null
+            if (targetName.isEmpty()){
+                System.out.println("This field must be filled. Please, type a name.");
+                return;
+            }
+            
+            //Call the searcher class method
+            Employee found = Searcher.binarySearch(employees, targetName);
+            
+            //Display the restult
+            if (found == null) {
+                System.out.println("Employee not found.");
+            } else {
+                System.out.println("\nEmployee found:");
+                System.out.println(" NAME:     " + found.getFullName());
+                System.out.println(" MANAGER TYPE:    " + found.getManagerType());
+                System.out.println("DEPARTMENT:     " + found.getDepartment());
+                System.out.println();
+            }
+    }
+                    
                     
                
     
