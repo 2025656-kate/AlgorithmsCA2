@@ -93,8 +93,10 @@ public class CA2_App {
             } catch (FileNotFoundException e){
                 System.out.println("File not found. Please try again");
             }
-            
-            private static void runMenuLoop(){
+    }
+           
+
+        private static void runMenuLoop(){
         
         while (true){
             displayMenu();
@@ -202,7 +204,45 @@ public class CA2_App {
                 System.out.println();
             }
     }
-                    
+             ////////ADD NEW EMPLOYEE RECORD ////////
+    private static void addNewEmployee(){
+        
+        //Call the class AddEmployee
+        Employee newEmployee = AddEmployee.createFromInput(scanner);
+        
+        if (newEmployee == null){
+            return;
+        }
+        
+        employees.add(newEmployee);
+        isSorted = false;
+        System.out.println("\n\"" + newEmployee.getFullName() + "\""
+        + " has been added as \"" + newEmployee.getManagerType() + "\""
+        + " to \"" + newEmployee.getDepartment() + "\" successfully!!!\n");
+        }
+        
+        
+    ////////BUILD THE BINARY TREE HIERARCHY/////
+    private static void buildBinaryTree(){
+        if (employees.size() <20){
+            System.out.println("At least 20 employees records are required for this action.");
+            System.out.println("Currently loaded: " + employees.size() + "\n");
+            return;
+        }
+        
+        EmployeeTree tree = new EmployeeTree();
+        int recordsToInsert = Math.min(employees.size(), 25);
+        
+        for (int i = 0; i < recordsToInsert; i++){
+            tree.insert(employees.get(i));
+        }
+            System.out.println("\nEmployee Hierarchy:");
+            tree.printLevelOrder();
+            System.out.println("\nTotal nodes: " + tree.getNodeCount());
+            System.out.println("Tree height: " + tree.getHeight() + "\n");
+    }
+}
+           
                     
                
     
